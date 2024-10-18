@@ -1,0 +1,40 @@
+create view vw_lista_de_funcionarios as 
+select nome, especialidade
+from funcionario;
+
+select * from vw_lista_de_funcionarios;
+
+create view vw_lista_de_dependentes as
+select nome
+from dependente;
+
+select * from vw_lista_de_dependentes;
+
+SELECT funcionarios.nome AS func_nome, dependentes.nome AS dep_nome
+FROM funcionarios
+INNER JOIN dependentes
+ON funcionarios.cod = dependentes.cod_func;
+
+SELECT funcionarios.nome AS func_nome, dependentes.nome AS dep_nome
+FROM funcionarios
+LEFT JOIN dependentes
+ON funcionarios.cod = dependentes.cod_func;
+
+SELECT funcionarios.nome AS func_nome, dependentes.nome AS dep_nome
+FROM funcionarios
+RIGHT JOIN dependentes
+ON funcionarios.cod = dependentes.cod_func;
+
+SELECT funcionarios.nome AS func_nome
+FROM funcionarios
+LEFT JOIN dependentes
+ON funcionarios.cod = dependentes.cod_func
+WHERE dependentes.cod_func IS NULL;
+
+SELECT funcionarios.nome AS func_nome
+FROM funcionarios
+RIGHT JOIN dependentes
+ON funcionarios.cod = dependentes.cod_func
+WHERE dependentes.cod_func IS NULL;
+
+
